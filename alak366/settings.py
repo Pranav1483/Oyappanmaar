@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'postgre',
         'USER': 'jhyhfrnzws',
         'PASSWORD': 'H651NM85QC70U7KI$',
-        'HOST': '*',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -128,3 +128,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+if 'WEBSITE_HOSTNAME' in os.environ: # Running on Azure
+    from .azure import *
