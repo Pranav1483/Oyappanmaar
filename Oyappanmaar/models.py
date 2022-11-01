@@ -5,3 +5,6 @@ class Credentials(models.Model):
     username = models.CharField(max_length=8)
     password = models.CharField(max_length=32)
 
+class Allowed(models.Model):
+    username = models.CharField(max_length=8)
+    

@@ -7,6 +7,7 @@ def homepage(request):
     template = loader.get_template('homepage.html')
     return HttpResponse(template.render({}, request))
 
+
 def check(request):
     username = request.POST.get('user', False)
     password = request.POST.get('passkey', False)
@@ -32,7 +33,11 @@ def check(request):
     }
     return HttpResponse(template.render(context, request))
             
-            
+
+def new_user(request):
+    template = loader.get_template('newuser.html')
+    return HttpResponse(template.render({}, request))
+     
         
     
 
