@@ -8,7 +8,6 @@ def homepage(request):
     return HttpResponse(template.render({}, request))
 
 def check(request):
-    text = 'Welcome'
     username = request.POST.get('user', False)
     password = request.POST.get('passkey', False)
     if not username:
