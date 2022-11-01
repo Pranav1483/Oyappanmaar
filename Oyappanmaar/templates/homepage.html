@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>Oyappanmaar</head>
+    <body>
+        <h1>Login</h1>
+        <form action="check/" method="post">
+            {% csrf_token %}
+            <input name="user" placeholder="Username">
+            <input name="passkey" type="password" placeholder="Password">
+            <input type="submit" value="Login">
+        </form>
+    </body>
+</html>
