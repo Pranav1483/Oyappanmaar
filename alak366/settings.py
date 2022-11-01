@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'alak366.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgre',
-        'USER': 'jhyhfrnzws',
-        'PASSWORD': 'H651NM85QC70U7KI$',
+        'NAME': 'oyappanmaar',
+        'USER': 'postgres',
+        'PASSWORD': 'cronaldo7',
         'HOST': 'localhost',
         'PORT': '5432',
     }
