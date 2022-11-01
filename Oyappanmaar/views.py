@@ -59,7 +59,7 @@ def signup(request):
             if x['username'] == username:
                 return HttpResponse('User Already Exists')
             idx = max(idx, x['id'])
-        tmp = Allowed(idx+1, name, username, password)
+        tmp = Credentials(idx+1, name, username, password)
         tmp.save()
         return HttpResponseRedirect(reverse('homepage'))
         
