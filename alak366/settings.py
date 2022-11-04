@@ -80,9 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'oyappanmaar',
-        'USER': 'postgres',
-        'PASSWORD': 'cronaldo7',
-        'HOST': 'localhost',
+        'USER': 'oyappanmaar_user',
+        'PASSWORD': 'wwKE3Cl6dZ7BFbMrGPMFDEbFRZeD68cs',
+        'HOST': 'postgres://oyappanmaar_user:wwKE3Cl6dZ7BFbMrGPMFDEbFRZeD68cs@dpg-cdijq4cgqg4aiit5ico0-a/oyappanmaar',
         'PORT': '5432',
     }
 }
