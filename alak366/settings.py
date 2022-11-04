@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure--1p4x968e7g35tc2##(z68l)e76+yi!b3k#6rl86f+isz*c-4o
 DEBUG = True
 
 ALLOWED_HOSTS = ['.azurewebsites.net', '*']
-CSRF_TRUSTED_ORIGINS = ['https://*.azurewebsites.net', 'https://azure-test-123.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = ['https://*.azurewebsites.net', 'https://azure-test-123.azurewebsites.net', 'https://oyappanmaar.onrender.com']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Oyappanmaar.apps.OyappanmaarConfig',
+    'Oyappanmaar',
 ]
 
 MIDDLEWARE = [
@@ -54,10 +54,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'alak366.urls'
 
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
