@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'oyappanmaar',
         'USER': 'oyappanmaar_user',
         'PASSWORD': 'wwKE3Cl6dZ7BFbMrGPMFDEbFRZeD68cs',
-        'HOST': 'dpg-cdijq4cgqg4aiit5ico0-a.postgres.onrender.com',
+        'HOST': 'dpg-cdijq4cgqg4aiit5ico0-a.singapore-postgres.render.com',
         'PORT': '5432',
     }
 }
