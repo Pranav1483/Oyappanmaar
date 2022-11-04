@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+</head>
+<body>
+    <h1>Welcome {{ member.person }}</h1>
+    <div>
+        <a href="logout/">Sign Out</a>
+    </div>
+    <div>
+        <a href="addpersonal/{{ privatenotes.user }}">Personal Note</a>
+    </div>
+    <div>
+        <a href="addpublic/{{ privatenotes.user }}">Public Note</a>
+    </div>
+    <div>
+        <h2>Your Notes</h2>
+        <p>{{ privatenotes.notes }}</p>
+    </div>
+    <div>
+        <h2>Public Notes</h2>
+        <table border="5">
+            <tr>
+                <td>User</td>
+                <td>Note</td>
+            </tr>
+            {% for x in publicnotes %}
+            {% if x.l > 0 %}
+            <tr>
+                <td>{{ x.name }}</td>
+                <td>{{ x.notes }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

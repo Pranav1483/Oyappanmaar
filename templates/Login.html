@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'Login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,700;1,200;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,400;0,700;1,200;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,400;0,700;0,800;1,200;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,400;0,600;0,700;0,800;1,200;1,600&display=swap" rel="stylesheet">
+    <title>Oyappanmaar</title>
+</head>
+<body>
+    <div class = "box">
+        <h1>Oyappanmaar &#10084;</h1>
+        <div class = "formbox">
+            <form action="check/" method="post">
+                {% csrf_token %}
+                <input class = "inputbox" name="user" placeholder="Username">
+                <br>
+                <input class = "inputbox" type="password" name="pwd" placeholder="Password">
+                <br>
+                <input id = "loginbtn" type="submit" value="Login">
+            </form>
+        <div class="signup">
+            <span class="signtext">Don't have an account?</span>
+            <a class="signtext" href="new_user/">Sign Up</a>
+            <br>
+        </div>
+    </div>
+    </div>
+    {% if test == 0 %}
+        <p>User not Found ! Register New User</p>
+    {% elif test == 1 %}
+        <p>Wrong Password ! Try Again</p>
+    {% endif %}
+</body>
+</html>

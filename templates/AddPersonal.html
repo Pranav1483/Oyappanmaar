@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Notes</title>
+</head>
+<body>
+    <h1>Welcome {{ cred.person }}, Add Your Personal Notes</h1>
+    <form action="addpersonalfinal/{{ member.user }}" method="post">
+        {% csrf_token %}
+        <input name="text" value="{{ member.notes }}">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

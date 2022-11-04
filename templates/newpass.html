@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reset Password</title>
+    </head>
+    <body>
+        <h1>Enter New Password</h1>
+        <form action="newp/{{ user }}" method="post">
+            {% csrf_token %}
+            <input type="password" name="password">
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
