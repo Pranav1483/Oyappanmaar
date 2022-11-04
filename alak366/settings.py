@@ -130,5 +130,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
-if 'WEBSITE_HOSTNAME' in os.environ: # Running on Azure
+if 'WEBSITE_HOSTNAME' in os.environ:
     from .azure import *

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reset Password</title>
+    </head>
+    <body>
+        <h1>Enter OTP</h1>
+        <form action="resetp/" method="post">
+            {% csrf_token %}
+            <input name="code">
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if c == 1 %}
+        <p>Wrong OTP, New OTP has been send</p>
+        {% endif %}
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Public Notes</title>
+</head>
+<body>
+    <h1>Welcome {{ cred.person }}, Add Your Public Notes</h1>
+    <form action="addpublicfinal/{{ member.user }}" method="post">
+        {% csrf_token %}
+        <input name="text" value="{{ member.notes }}">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>Oyappanmaar</head>
-    <body>
-        <form action="signup/" method="post">
-            {% csrf_token %}
-            <input name='name' placeholder='Name'>
-            <input name='user' placeholder='Roll Number'>
-            <input name='passkey' type='password' placeholder='Password'>
-            <input type='submit' value='Sign Up'>
-        </form>
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>New User</h1>
+    <form action="signup/" method="post">
+        {% csrf_token %}
+        Name :<br>
+        <input name="name">
+        <br><br>
+        Username :<br>
+        <input name="user">
+        <br><br>
+        Password :<br>
+        <input type="password" name="pwd">
+        <br><br>
+        <input type="submit" value="Sign Up ">
+    </form>
+    {% if c == 1 %}
+        <p>The Username Already exists !</p>
+    {% elif c == 2 %}
+        <p>You are not an Oyappan !</p>
+    {% endif %}
+</body>
