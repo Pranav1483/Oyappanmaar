@@ -10,7 +10,6 @@ from django.core.mail import send_mail
 
 
 def index(request):
-    request.session['flag1'] = 0
     template = loader.get_template('Login.html')
     context = {
         'test': request.session.get('flag', -1),
@@ -90,9 +89,9 @@ def logout(request):
     return HttpResponseRedirect(reverse('index'))
 
 
-def addp(request, id):
-    member = Note.objects.get(user=id)
-    cred = Credentials.objects.get(username=id)
+def addp(request):
+    member = Note.objects.get(user=request.session['user'])
+    cred = Credentials.objects.get(username=request.session['user'])
     template = loader.get_template('AddPersonal.html')
     context = {
         'member': member,
@@ -101,18 +100,18 @@ def addp(request, id):
     return HttpResponse(template.render(context, request))
 
 
-def addpfinal(request, id):
+def addpfinal(request):
     data = request.POST['text']
-    member = Note.objects.get(user=id)
+    member = Note.objects.get(user=request.session['user'])
     member.notes = data
     member.l = len(data)
     member.save()
     return HttpResponseRedirect(reverse('check'))
 
 
-def addP(request, id):
-    member = NotePublic.objects.get(user=id)
-    cred = Credentials.objects.get(username=id)
+def addP(request):
+    member = NotePublic.objects.get(user=request.session['user'])
+    cred = Credentials.objects.get(username=request.session['user'])
     template = loader.get_template('AddPublic.html')
     context = {
         'member': member,
@@ -121,9 +120,9 @@ def addP(request, id):
     return HttpResponse(template.render(context, request))
 
 
-def addPfinal(request, id):
+def addPfinal(request):
     data = request.POST['text']
-    member = NotePublic.objects.get(user=id)
+    member = NotePublic.objects.get(user=request.session['user'])
     member.notes = data
     member.l = len(data)
     member.save()
@@ -138,7 +137,9 @@ def forgot(request):
 
 def forgotp(request):
     request.session['forgot'] = 2
-    user = request.POST['user']
+    user = request.POST.get('user', False)
+    if not user:
+        user = request.session['user']
     for x in Credentials.objects.all().values():
         if x['username'] == user:
             request.session['forgot'] = 0
@@ -154,7 +155,7 @@ def forgotp(request):
         send_mail(subject, message, email_from, recipient_list)
         template = loader.get_template('otpform.html')
         request.session['user'] = user
-        return HttpResponse(template.render({}, request))
+        return HttpResponse(template.render({'c': request.session.get('wrong', 0)}, request))
     else:
         return HttpResponseRedirect(reverse('forgot'))
 
@@ -165,6 +166,7 @@ def resetp(request):
         template = loader.get_template('newpass.html')
         return HttpResponse(template.render({}, request))
     else:
+        request.session['wrong'] = 1
         return HttpResponseRedirect(reverse('forgotp'))
 
 

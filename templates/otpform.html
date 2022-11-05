@@ -12,5 +12,11 @@
             <br>
             <input type="submit" value="Submit">
         </form>
+        <br>
+        {% if c == 0 %}
+        <p>OTP sent to your smail</p>
+        {% elif c == 1 %}
+        <p>Wrong OTP, New OTP has been sent to your smail</p>
+        {% endif %}        
     </body>
 </html>
