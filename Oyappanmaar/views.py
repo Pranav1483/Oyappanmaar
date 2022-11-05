@@ -86,6 +86,8 @@ def add_user(request):
 
 
 def logout(request):
+    for i in request.session.keys():
+        request.session[i] = False
     return HttpResponseRedirect(reverse('index'))
 
 
@@ -131,7 +133,9 @@ def addPfinal(request):
 
 def forgot(request):
     template = loader.get_template('forgotform.html')
-    
+    for i in request.session.keys():
+        if i != 'forgot':
+            request.session[i] = False
     return HttpResponse(template.render({'c': request.session.get('forgot', 0)}, request))
 
 
@@ -175,6 +179,8 @@ def newp(request):
     tmp = Credentials.objects.get(username=request.session['user'])
     tmp.password = pwd
     tmp.save()
+    for i in request.session.keys():
+        request.session[i] = False
     return HttpResponseRedirect(reverse('index'))
 
     
