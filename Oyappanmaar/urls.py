@@ -11,4 +11,8 @@ urlpatterns = [
     path('check/addpersonal/addpersonalfinal/<str:id>', views.addpfinal, name='addpfinal'),
     path('check/addpublic/<str:id>', views.addP, name='addP'),
     path('check/addpublic/addpublicfinal/<str:id>', views.addPfinal, name='addPfinal'),
+    path('forgot/', views.forgot, name='forgot'),
+    path('forgot/forgotp/', views.forgotp, name='forgotp'),
+    path('forgot/forgotp/resetp/', views.resetp, name='resetp'),
+    path('forgot/forgotp/resetp/newp', views.newp, name='newp'),
 ]

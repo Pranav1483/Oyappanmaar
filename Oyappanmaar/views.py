@@ -4,6 +4,9 @@ from django.template import loader
 from django.urls import reverse
 from .models import Credentials, Note, NotePublic, Allowed
 from django.shortcuts import redirect
+import random
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -125,6 +128,55 @@ def addPfinal(request, id):
     member.l = len(data)
     member.save()
     return HttpResponseRedirect(reverse('check'))
+
+
+def forgot(request):
+    template = loader.get_template('forgotform.html')
+    
+    return HttpResponse(template.render({'c': request.session.get('forgot', 0)}, request))
+
+
+def forgotp(request):
+    request.session['forgot'] = 2
+    user = request.POST['user']
+    for x in Credentials.objects.all().values():
+        if x['username'] == user:
+            request.session['forgot'] = 0
+            break
+    if request.session['forgot'] == 0:
+        request.session['otp'] = ''
+        for _ in range(6):
+            request.session['otp'] += random.randint(1, 9)
+        subject = 'Recover Password'
+        message = 'Your OTP is ' + request.session['otp']
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [user+'@smail.iitm.ac.in']
+        send_mail(subject, message, email_from, recipient_list)
+        template = loader.get_template('otpform.html')
+        request.session['user'] = user
+        return HttpResponse(template.render({}, request))
+    else:
+        return HttpResponseRedirect(reverse('forgot'))
+
+
+def resetp(request):
+    otp = request.POST['code']
+    if otp == request.session['otp']:
+        template = loader.get_template('newpass.html')
+        return HttpResponse(template.render({}, request))
+    else:
+        return HttpResponseRedirect(reverse('forgotp'))
+
+
+def newp(request):
+    pwd = request.POST['password']
+    tmp = Credentials.objects.get(username=request.session['user'])
+    tmp.password = pwd
+    tmp.save()
+    return HttpResponseRedirect(reverse('index'))
+
+    
+
         
     
         

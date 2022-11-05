@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Enter New Password</h1>
-        <form action="newp/{{ user }}" method="post">
+        <form action="newp/" method="post">
             {% csrf_token %}
             <input type="password" name="password">
             <br>
