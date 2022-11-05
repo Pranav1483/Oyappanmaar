@@ -146,7 +146,7 @@ def forgotp(request):
     if request.session['forgot'] == 0:
         request.session['otp'] = ''
         for _ in range(6):
-            request.session['otp'] += random.randint(1, 9)
+            request.session['otp'] += str(random.randint(1, 9))
         subject = 'Recover Password'
         message = 'Your OTP is ' + request.session['otp']
         email_from = settings.EMAIL_HOST_USER

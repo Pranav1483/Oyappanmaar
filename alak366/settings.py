@@ -135,9 +135,10 @@ import os
 if 'WEBSITE_HOSTNAME' in os.environ:
     from .azure import *
     
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = 'smtp.zoho.in'
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'a_oyappanmaar@yahoo.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'a_oyappanmaar@zohomail.in'
 EMAIL_HOST_PASSWORD = 'PfAuhG+7ts_'
+# 'C5fbDJigyrn7'
