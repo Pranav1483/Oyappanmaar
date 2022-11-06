@@ -10,6 +10,9 @@ from django.core.mail import send_mail
 
 
 def index(request):
+    for i in request.session.keys():
+        if i != 'flag':
+            request.session[i] = -1
     template = loader.get_template('Login.html')
     context = {
         'test': request.session.get('flag', -1),
@@ -87,7 +90,7 @@ def add_user(request):
 
 def logout(request):
     for i in request.session.keys():
-        request.session[i] = False
+        request.session[i] = -1
     return HttpResponseRedirect(reverse('index'))
 
 
@@ -135,7 +138,7 @@ def forgot(request):
     template = loader.get_template('forgotform.html')
     for i in request.session.keys():
         if i != 'forgot':
-            request.session[i] = False
+            request.session[i] = -1
     return HttpResponse(template.render({'c': request.session.get('forgot', 0)}, request))
 
 
@@ -148,20 +151,21 @@ def forgotp(request):
         if x['username'] == user:
             request.session['forgot'] = 0
             break
-    if request.session['forgot'] == 0:
-        request.session['otp'] = ''
-        for _ in range(6):
-            request.session['otp'] += str(random.randint(1, 9))
-        subject = 'Recover Password'
-        message = 'Your OTP is ' + request.session['otp']
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [user+'@smail.iitm.ac.in']
-        send_mail(subject, message, email_from, recipient_list)
-        template = loader.get_template('otpform.html')
-        request.session['user'] = user
-        return HttpResponse(template.render({'c': request.session.get('wrong', 0)}, request))
-    else:
+    if request.session['forgot'] == 2:
         return HttpResponseRedirect(reverse('forgot'))
+    if request.session.get('wrong', 0) == 2 or request.session.get('wrong', 0) == 0 or request.session.get('wrong', -1) == -1:
+        if request.session['forgot'] == 0:
+            request.session['otp'] = ''
+            for _ in range(6):
+                request.session['otp'] += str(random.randint(1, 9))
+            subject = 'Recover Password'
+            message = 'Your OTP is ' + request.session['otp']
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user+'@smail.iitm.ac.in']
+            send_mail(subject, message, email_from, recipient_list)
+    template = loader.get_template('otpform.html')
+    request.session['user'] = user
+    return HttpResponse(template.render({'c': request.session.get('wrong', 0)}, request))
 
 
 def resetp(request):
@@ -182,6 +186,11 @@ def newp(request):
     for i in request.session.keys():
         request.session[i] = False
     return HttpResponseRedirect(reverse('index'))
+
+
+def resendotp(request):
+    request.session['wrong'] = 2
+    return HttpResponseRedirect(reverse('forgotp'))
 
     
 

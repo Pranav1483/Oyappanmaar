@@ -12,11 +12,17 @@
             <br>
             <input type="submit" value="Submit">
         </form>
+        <form action="resendotp/" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Resend OTP">
+        </form>
         <br>
         {% if c == 0 %}
         <p>OTP sent to your smail</p>
         {% elif c == 1 %}
-        <p>Wrong OTP, New OTP has been sent to your smail</p>
+        <p>Wrong OTP</p>
+        {% elif c == 2 %}
+        <p>New OTP has been sent</p>
         {% endif %}        
     </body>
 </html>

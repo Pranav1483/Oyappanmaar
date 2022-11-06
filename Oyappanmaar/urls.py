@@ -15,4 +15,5 @@ urlpatterns = [
     path('forgot/forgotp/', views.forgotp, name='forgotp'),
     path('forgot/forgotp/resetp/', views.resetp, name='resetp'),
     path('forgot/forgotp/resetp/newp/', views.newp, name='newp'),
+    path('forgot/forgotp/resendotp/', views.resendotp, name='resendotp'),
 ]

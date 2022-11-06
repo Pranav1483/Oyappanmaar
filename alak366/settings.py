@@ -141,4 +141,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'a_oyappanmaar@zohomail.in'
 EMAIL_HOST_PASSWORD = 'PfAuhG+7ts_'
-# 'C5fbDJigyrn7'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
